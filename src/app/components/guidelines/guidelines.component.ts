@@ -1,0 +1,97 @@
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DisasterService } from '../../services/disaster.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { GuidelineDialogComponent } from '../../reusable/guideline-dialog/guideline-dialog.component';
+import { NavBarComponent } from "../../reusable/nav-bar/nav-bar.component";
+import { SidebarComponent } from "../../reusable/sidebar/sidebar.component";
+
+@Component({
+  selector: 'app-guidelines',
+  imports: [CommonModule, MatDialogModule, MatCardModule, MatListModule, MatButtonModule, MatToolbarModule, MatIconModule, MatDividerModule, NavBarComponent, SidebarComponent],
+  templateUrl: './guidelines.component.html',
+  styleUrl: './guidelines.component.css',
+})
+export class GuidelinesComponent {
+  disaster_category!: string;
+  disasters: any;
+
+  videoUrl: string = '';
+  embedUrl: SafeResourceUrl | null = null;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private sanitizer: DomSanitizer,
+    private disasterServ: DisasterService,
+    private dialog: MatDialog
+  ) {}
+
+  ngOnInit() {
+    this.disaster_category = this.route.snapshot.params['disasterName'];
+
+    this.disasterServ.getData().subscribe((res) => {
+      const selectedCategory = res[0].disasters.find(
+        (cat: { category: string }) => cat.category === this.disaster_category
+      );
+
+      if (selectedCategory) {
+        this.disasters = selectedCategory;
+        this.videoUrl = selectedCategory.linkUrl;
+        console.log(this.videoUrl);
+        console.log(selectedCategory.linkUrl);
+        this.convertToEmbedUrl();
+      } else {
+        console.error('No questions found for the selected category.');
+      }
+    });
+  }
+
+  convertToEmbedUrl() {
+    const videoId = this.extractVideoId(this.videoUrl);
+    console.log("videoId",videoId);
+    if (videoId) {
+      const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+      this.embedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
+    } else {
+      alert('Invalid YouTube URL. Please enter a valid YouTube video link.');
+    }
+  }
+
+  extractVideoId(url: string): string | null {
+    const regExp =
+      /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    return match && match[2].length === 11 ? match[2] : null;
+  }
+
+  openDialog(type: string): void {
+    const dialogRef = this.dialog.open(GuidelineDialogComponent, {
+      width: '300px',
+      height: '200px',
+      data: { suggestions: '' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        if (type === 'do') {
+          this.disasters.guidelines.do.push(result);
+        } else {
+          this.disasters.guidelines.dont.push(result);
+        }
+      }
+    });
+  }
+
+  goBack() {
+    this.router.navigate(['/dashboard']);
+  }
+}

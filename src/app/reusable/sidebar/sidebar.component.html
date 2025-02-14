@@ -1,0 +1,43 @@
+<mat-sidenav-container class="sidenav-container" *ngIf="isOpen">
+  <mat-sidenav  mode="side" [opened]="isOpen" class="sidenav">
+    <mat-toolbar class="sidebar-header" >
+      <mat-icon class="menu-icon" (click)="onCloseClick()">close</mat-icon>
+      <span>Disaster Preparedness</span>
+    </mat-toolbar>
+
+    <mat-nav-list >
+      <a mat-list-item routerLink="/dashboard" class="nav-item">
+        <mat-icon>dashboard</mat-icon>
+        <span class="nav-text">Dashboard</span>
+      </a>
+      <a mat-list-item routerLink="/community-group" class="nav-item">
+        <mat-icon>chat</mat-icon>
+        <span class="nav-text">Community Group</span>
+      </a>
+      <a mat-list-item routerLink="/alerts" class="nav-item">
+        <mat-icon>notifications</mat-icon>
+        <span class="nav-text">Alerts</span>
+      </a>
+      <a mat-list-item routerLink="/resource-shelter" class="nav-item">
+        <mat-icon fontIcon="home"></mat-icon>
+        <span class="nav-text">Resource/Shelters</span>
+      </a>
+    </mat-nav-list>
+
+    <div class="auth-buttons">
+      <a mat-list-item routerLink="/login" class="nav-item auth-button">
+        <mat-icon>login</mat-icon>
+        <span  class="nav-text">Login</span>
+      </a>
+      <a mat-list-item routerLink="/register" class="nav-item auth-button">
+        <mat-icon>person_add</mat-icon>
+        <span  class="nav-text">Register</span>
+      </a>
+    </div>
+
+    <button mat-button class="logout-button">
+      <mat-icon>logout</mat-icon>
+      <span class="nav-text">Logout</span>
+    </button>
+  </mat-sidenav>
+</mat-sidenav-container>
