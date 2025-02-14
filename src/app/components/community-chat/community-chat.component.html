@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 sidebar">
+      <h3>Community Chat</h3>
+      <ul>
+        <li [routerLink]="['/']" routerLinkActive="router-link-active" ><i class="fas fa-home"></i> Home</li>
+        <li [routerLink]="['/']" routerLinkActive="router-link-active" ><i class="fas fa-hashtag"></i> Trending</li>
+        <li [routerLink]="['/']" routerLinkActive="router-link-active" ><i class="fas fa-bell"></i> Notifications</li>
+        <li [routerLink]="['/']" routerLinkActive="router-link-active" ><i class="fas fa-envelope"></i> Messages</li>
+        <li [routerLink]="['/']" routerLinkActive="router-link-active" ><i class="fas fa-user"></i> Profile</li>
+      </ul>
+    </div>
+
+    <div class="col-md-8 chat-area">
+      <div class="chat-messages">
+        <div *ngFor="let msg of messages" class="message">
+          <div>
+            <strong>{{ msg.username }}</strong>
+            <p>{{ msg.text }}</p>
+            <small>{{msg.date | date : 'h:mm a'}}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="post-box-container" *ngIf="isPostBoxOpen">
+  <div class="post-box">
+    <textarea [(ngModel)]="newMessage" placeholder="What's on your mind?"></textarea>
+    <button class="btn btn-primary" (click)="sendMessage($event)">Post</button>
+  </div>
+</div>
+
+<button class="floating-btn" (click)="togglePostBox()">
+  <i class="fa-solid fa-pen"></i>
+</button>
