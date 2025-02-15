@@ -1,22 +1,27 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, MatIconModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
   userForm: FormGroup = new FormGroup({
-    userName: new FormControl('', [Validators.required]),
+    fullName: new FormControl('', [Validators.required]),
     email: new FormControl('', [
       Validators.required,
       Validators.email,
@@ -28,6 +33,17 @@ export class RegisterComponent {
     ]),
     confirmPassword: new FormControl('', [Validators.required, Validators.minLength(5)])
   });
+
+  hide1 = signal(true);
+  clickEvent1(event: MouseEvent) {
+    this.hide1.set(!this.hide1());
+    event.stopPropagation();
+  }
+  hide2 = signal(true);
+  clickEvent2(event: MouseEvent) {
+    this.hide2.set(!this.hide2());
+    event.stopPropagation();
+  }
 
   constructor(private router: Router) {
     // this.userForm.controls['userName'].disable();
