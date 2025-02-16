@@ -6,6 +6,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { SidebarComponent } from './reusable/sidebar/sidebar.component';
 import { ResourceShelterListComponent } from './components/resource-shelter-list/resource-shelter-list.component';
+import { CommunityChatComponent } from './components/community-chat/community-chat.component';
 
 export const routes: Routes = [
   {
@@ -32,5 +33,8 @@ export const routes: Routes = [
   {
     path: 'resource-shelter',
     component: ResourceShelterListComponent
+  },{
+    path: 'community',
+    component: CommunityChatComponent
   }
 ];

@@ -14,7 +14,10 @@ import { RouterLink } from '@angular/router';
 })
 
 export class CommunityChatComponent {
-  messages: Message[] = [];
+  messages: Message[] = [
+    { username: "Alice", text: "Hello, everyone!", date: new Date() },
+    { username: "Bob", text: "How's it going?", date: new Date() }
+];
   newMessage: string = '';
   isPostBoxOpen: boolean = false;
 
