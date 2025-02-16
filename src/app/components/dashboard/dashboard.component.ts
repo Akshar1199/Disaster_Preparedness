@@ -11,8 +11,6 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { SidebarComponent } from '../../reusable/sidebar/sidebar.component';
-import { NavBarComponent } from "../../reusable/nav-bar/nav-bar.component";
 
 @Component({
   selector: 'app-dashboard',
@@ -27,9 +25,7 @@ import { NavBarComponent } from "../../reusable/nav-bar/nav-bar.component";
     MatDividerModule,
     MatInputModule,
     FormsModule,
-    MatSidenavModule,
-    NavBarComponent,
-    SidebarComponent
+    MatSidenavModule
 ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
@@ -41,7 +37,7 @@ export class DashboardComponent {
   searchQuery: string = '';
   sidebarOpen = true;
 
-  @ViewChild(NavBarComponent) navBar!: NavBarComponent;
+  // @ViewChild(NavBarComponent) navBar!: NavBarComponent;
 
   constructor(private disasterServ: DisasterService, private router: Router) {}
 
@@ -73,14 +69,7 @@ export class DashboardComponent {
     this.router.navigate(['/profile']);
   }
 
-  toggleSidebar() {
-    this.sidebarOpen = true;
-  }
 
-  onCloseSidebar() {
-    this.sidebarOpen = false;
-    this.navBar.sidebarOpen = false;
-  }
 
   logout() {}
 }

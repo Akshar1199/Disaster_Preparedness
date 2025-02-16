@@ -1,28 +1,43 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, HostListener, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from "./reusable/sidebar/sidebar.component";
 import { NavBarComponent } from "./reusable/nav-bar/nav-bar.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CommonModule,SidebarComponent, NavBarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   // title = 'Disaster_preparedness';
 
-  // sidebarOpen = false;
-  // @ViewChild(NavBarComponent) navBar!: NavBarComponent;
+  sidebarOpen = true;
+  @ViewChild(NavBarComponent) navBar!: NavBarComponent;
 
-  // toggleSidebar() {
-  //   this.sidebarOpen = !this.sidebarOpen;
-  // }
+  @HostListener('window:resize')
+  onResize() {
+    this.checkScreenSize();
+  }
 
-  // onCloseSidebar() {
-  //   this.navBar.sidebarOpen = false;
-  //   this.sidebarOpen = false;
-  // }
+  checkScreenSize() {
+    if (window.innerWidth <= 1000) {
+      this.sidebarOpen = false;
+      this.navBar.sidebarOpen = false;
+    } else {
+      this.sidebarOpen = true;
+    }
+  }
+
+  toggleSidebar() {
+    this.sidebarOpen = !this.sidebarOpen;
+  }
+
+  onCloseSidebar() {
+    this.navBar.sidebarOpen = false;
+    this.sidebarOpen = false;
+  }
 
 
 }

@@ -4,17 +4,18 @@ import { FormsModule } from '@angular/forms';
 import { interval, scan, startWith, Subject } from 'rxjs';
 import { MessageService } from '../../services/message.service';
 import { WebSocketService } from '../../services/web-socket.service';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-community-chat',
-  imports: [CommonModule, FormsModule, DatePipe, RouterLink],
+  imports: [CommonModule, FormsModule, DatePipe],
   templateUrl: './community-chat.component.html',
   styleUrl: './community-chat.component.css'
 })
 
 export class CommunityChatComponent {
-  messages: Message[] = [];
+
+
+  messages: Message[] = [{username:'Dhruvi', text:'hello', date: new Date()}, {username:'Khushi', text:'hi', date: new Date()}];
   newMessage: string = '';
   isPostBoxOpen: boolean = false;
 

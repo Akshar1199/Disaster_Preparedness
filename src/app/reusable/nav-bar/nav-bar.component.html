@@ -1,29 +1,28 @@
 <mat-toolbar color="primary" class="navbar">
+
   <button
     mat-icon-button
     (click)="toggleSidebar()"
+    class="menu-button"
     *ngIf="!sidebarOpen"
   >
     <mat-icon>menu</mat-icon>
   </button>
 
-  <!-- <div class="spacer"></div> -->
 
-  <!-- <mat-form-field class="my-search-box"> -->
-    <div class="search-bar">
-
-      <!-- <mat-label>Search Disasters</mat-label> -->
-      <input
-      class="search-bar-input"
-        matInput
-        type="text"
-        [(ngModel)]="searchQuery"
-        (input)="onSearch()"
-        placeholder="Search Disasters"
-      />
-      <!-- <mat-icon class="search-icon">search</mat-icon> -->
-    </div>
-  <!-- </mat-form-field> -->
+  <span class="flex-spacer"></span>
 
 
+  <mat-form-field class="search-form-field">
+    <mat-label>Search Disasters</mat-label>
+    <mat-icon matPrefix>search</mat-icon>
+    <input
+      matInput
+      [(ngModel)]="searchQuery"
+      (input)="onSearch()"
+    />
+  </mat-form-field>
+
+
+  <span class="flex-spacer"></span>
 </mat-toolbar>

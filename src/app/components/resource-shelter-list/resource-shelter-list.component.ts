@@ -16,7 +16,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AddResourceDialogComponent } from '../../reusable/add-resource-dialog/add-resource-dialog.component';
 import { AddShelterDialogComponent } from '../../reusable/add-shelter-dialog/add-shelter-dialog.component';
 import { DisasterService, Resource, Shelter } from '../../services/disaster.service';
-import { SidebarComponent } from "../../reusable/sidebar/sidebar.component";
 
 @Component({
   selector: 'app-resource-shelter-list',
@@ -33,8 +32,8 @@ import { SidebarComponent } from "../../reusable/sidebar/sidebar.component";
     MatInputModule,
     MatDialogModule,
     MatButtonModule,
-    MatSnackBarModule,
-    SidebarComponent
+    MatSnackBarModule
+
 ],
   templateUrl: './resource-shelter-list.component.html',
   styleUrls: ['./resource-shelter-list.component.css'],

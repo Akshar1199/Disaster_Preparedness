@@ -11,12 +11,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { GuidelineDialogComponent } from '../../reusable/guideline-dialog/guideline-dialog.component';
-import { NavBarComponent } from "../../reusable/nav-bar/nav-bar.component";
-import { SidebarComponent } from "../../reusable/sidebar/sidebar.component";
+
 
 @Component({
   selector: 'app-guidelines',
-  imports: [CommonModule, MatDialogModule, MatCardModule, MatListModule, MatButtonModule, MatToolbarModule, MatIconModule, MatDividerModule, NavBarComponent, SidebarComponent],
+  imports: [CommonModule, MatDialogModule, MatCardModule, MatListModule, MatButtonModule, MatToolbarModule, MatIconModule, MatDividerModule],
   templateUrl: './guidelines.component.html',
   styleUrl: './guidelines.component.css',
 })
