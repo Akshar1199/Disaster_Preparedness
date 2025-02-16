@@ -15,7 +15,7 @@
 
         <div class="all-categories">
           <div
-            *ngFor="let item of filteredDisasters"
+            *ngFor="let item of filteredDisasters$ | async"
             class="category-card"
           >
             <mat-card
