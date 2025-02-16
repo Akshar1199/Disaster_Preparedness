@@ -1,15 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule],
+  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, MatIconModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -17,25 +18,31 @@ import { MatCardModule } from '@angular/material/card';
 export class LoginComponent {
 
   userForm: FormGroup = new FormGroup({
-    userName: new FormControl("",[Validators.required]),
-    password: new FormControl("",[Validators.required, Validators.minLength(5)])
+    email: new FormControl("", [Validators.required,]),
+    password: new FormControl("", [Validators.required])
   })
+  hide = signal(true);
 
-  constructor(private router: Router){
+  clickEvent(event: MouseEvent) {
+    this.hide.set(!this.hide());
+    event.stopPropagation();
+  }
+
+  constructor(private router: Router) {
   }
 
   errorMessage: string = '';
 
-  onUserSave(){
+  onUserSave() {
     // const isValid = this.userForm.valid;
     const formValue = this.userForm.value;
 
     // this.authServ.getUsers().subscribe((users) => {
-    //   const user = users.find((user) => user.userName === formValue.userName);
+    //   const user = users.find((user) => user.email === formValue.email);
 
     //   if (user) {
     //     if (user.password === formValue.password) {
-    //       sessionStorage.setItem("userName",user.userName);
+    //       sessionStorage.setItem("email",user.email);
     //       this.errorMessage = '';
     //       this.userForm.reset();
     //       alert('Welcome to QuizMaster!');
@@ -53,11 +60,11 @@ export class LoginComponent {
 
   }
 
-  navigateToRegister(){
+  navigateToRegister() {
     this.router.navigate(['/register']);
   }
 
-  navigateToHome(){
+  navigateToHome() {
     this.router.navigate(['/category']);
   }
 }

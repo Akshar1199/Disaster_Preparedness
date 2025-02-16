@@ -1,99 +1,88 @@
-<div class="d-flex justify-content-center align-items-center"
-  style="height:600px;">
-  <div class="card shadow-lg p-4" style="width: 45%; border-radius: 15px;">
-    <div class="card-header text-center text-white fw-bold"
-      style="background: #1a240bed; border-radius: 10px 10px 0 0;">
-      Register
-    </div>
-
-    <div class="card-body">
+<div class="d-flex justify-content-center align-items-center" style="height:700px;">
+  <mat-card class="shadow-lg p-4 mat-elevation-z6" style="width: 45%; border-radius: 15px;">
+    <mat-card-header class="text-center mb-3 mx-3"
+      style="background: #002244; padding: 15px; border-radius: 10px 10px 0 0;">
+      <mat-card-title class="text-white">
+        Register
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
       <form [formGroup]="userForm" (ngSubmit)="onUserSave()">
-        <div class="mb-3">
-          <label for="username" class="form-label fw-semibold">Username:</label>
-          <input type="text" formControlName="userName"
-            class="form-control rounded-pill"
-            id="username" autocomplete="username"
-            placeholder="Enter username" name="username">
 
-          <div class="text-danger mt-1"
-            *ngIf="userForm.controls['userName'].touched && userForm.controls['userName'].errors?.['required']">
-            <span>This field is required</span>
-          </div>
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Full Name</mat-label>
+          <input matInput type="text" formControlName="fullName" id="fullName" autocomplete="fullName"
+            placeholder="Enter Your Full Name">
+          <mat-error
+            *ngIf="userForm.controls['fullName'].touched && userForm.controls['fullName'].errors?.['required']">
+            This field is required
+          </mat-error>
+        </mat-form-field>
 
-        </div>
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" id="email" autocomplete="email"
+            placeholder="Enter email">
+          <mat-error *ngIf="userForm.controls['email'].touched && userForm.controls['email'].errors?.['required']">
+            This is required
+          </mat-error>
 
-        <div class="mb-3 mt-3">
-          <label for="email" class="form-label">Email:</label>
-          <input type="text" formControlName="email" class="form-control rounded-pill"
-            id="email" autocomplete="email"
-            placeholder="Enter email" name="email">
+          <mat-error *ngIf="userForm.controls['email'].touched && userForm.controls['email'].errors?.['pattern']">
+            Please follow proper email format
+          </mat-error>
+        </mat-form-field>
 
-          <div class="text-danger">
-            @if(userForm.controls['email'].touched){
-            @if(userForm.controls['email'].errors?.['required']){
-            <span>This is required</span>
-            }
-            @else if(userForm.controls['email'].errors?.['email']){
-            <span>Provide proper email format and use &#64; too</span>
-            }
-            @else if(userForm.controls['email'].errors?.['pattern']){
-            <span>Please follow proper email format</span>
-            }
-            }
-          </div>
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hide1() ? 'password' : 'text'" formControlName="password" id="pwd" autocomplete="current-password" placeholder="Enter password">
 
-        </div>
+          <button mat-icon-button matSuffix (click)="clickEvent1($event)" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide1()">
+            <mat-icon>{{hide1() ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
 
-        <div class="mb-3">
-          <label for="pwd" class="form-label fw-semibold">Password:</label>
-          <input type="password" formControlName="password"
-            class="form-control rounded-pill"
-            id="pwd" autocomplete="current-password"
-            placeholder="Enter password">
+          <mat-error
+            *ngIf="userForm.controls['password'].touched && userForm.controls['password'].errors?.['required']">
+            This field is required
+          </mat-error>
+          <mat-error
+            *ngIf="userForm.controls['password'].touched && userForm.controls['password'].errors?.['minlength']">
+            Minimum length is 5 characters
+          </mat-error>
+        </mat-form-field>
 
-          <div class="text-danger mt-1"
-            *ngIf="userForm.controls['password'].touched">
-            <span
-              *ngIf="userForm.controls['password'].errors?.['required']">This
-              field is required</span>
-            <span
-              *ngIf="userForm.controls['password'].errors?.['minlength']">Minimum
-              length is 5 characters</span>
-          </div>
-        </div>
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Confirm Password</mat-label>
+          <input matInput [type]="hide2() ? 'password' : 'text'" formControlName="confirmPassword" id="confirmPwd" autocomplete="new-password" placeholder="Enter confirm password">
 
-        <div class="mb-3">
-          <label for="pwd" class="form-label fw-semibold">Confirm Password:</label>
-          <input type="password" formControlName="password"
-            class="form-control rounded-pill"
-            id="pwd" autocomplete="current-confirmPassword"
-            placeholder="Enter confirmPassword">
+          <button mat-icon-button matSuffix (click)="clickEvent2($event)" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide2()">
+            <mat-icon>{{hide2() ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error
+            *ngIf="userForm.controls['confirmPassword'].touched && userForm.controls['confirmPassword'].errors?.['required']">
+            This field is required
+          </mat-error>
 
-          <div class="text-danger mt-1"
-            *ngIf="userForm.controls['confirmPassword'].touched">
-            <span
-              *ngIf="userForm.controls['confirmPassword'].errors?.['required']">This
-              field is required</span>
-            <span
-              *ngIf="userForm.controls['confirmPassword'].errors?.['minlength']">Minimum
-              length is 5 characters</span>
-          </div>
-        </div>
+          <mat-error
+            *ngIf="userForm.controls['confirmPassword'].touched && userForm.controls['confirmPassword'].errors?.['minlength']">
+            Minimum length is 5 characters
+          </mat-error>
+        </mat-form-field>
 
-        <div *ngIf="errorMessage" class="alert alert-danger">
+        <div *ngIf="errorMessage" class="text-danger">
           {{ errorMessage }}
         </div>
 
-        <button type="submit" [disabled]="userForm.invalid"
-          class="btn btn-primary w-50 rounded-pill"
-          style="margin-left: 25%;">Register</button>
-
+        <button mat-raised-button color="primary" type="submit" [disabled]="userForm.invalid" class="w-100 mt-2">
+          Register
+        </button>
       </form>
+
       <div class="text-center mt-3">
         <span>Already have an account? </span>
-        <a (click)="navigateToLogin()" class="text-primary fw-bold"
-          style="cursor: pointer;">Login Here</a>
+        <a (click)="navigateToLogin()" class="text-primary fw-bold" style="cursor: pointer;">Login Here</a>
       </div>
-    </div>
-  </div>
+    </mat-card-content>
+  </mat-card>
 </div>
