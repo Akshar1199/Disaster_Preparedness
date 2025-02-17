@@ -9,6 +9,7 @@ import {
   AbstractControl,
   ValidationErrors,
 } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCard, MatCardActions, MatCardContent, MatCardSubtitle, MatCardTitle } from '@angular/material/card';
 import { MatDivider } from '@angular/material/divider';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
@@ -17,7 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-add-guidelines',
-  imports: [CommonModule, ReactiveFormsModule, MatDivider, MatInputModule, MatCard, MatIcon, MatCardActions, MatCardSubtitle, MatCardContent, MatCardTitle, MatCardTitle, MatFormField, MatLabel],
+  imports: [CommonModule, ReactiveFormsModule, MatDivider, MatInputModule, MatCard, MatIcon, MatCardActions, MatCardSubtitle, MatCardContent, MatCardTitle, MatCardTitle, MatFormField, MatLabel,MatButtonModule],
   templateUrl: './add-guidelines.component.html',
   styleUrl: './add-guidelines.component.css',
 })

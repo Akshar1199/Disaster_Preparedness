@@ -13,5 +13,9 @@
 
 .search-form-field {
   width: 30vw;
-  color: red;
+  /* color: red; */
+}
+
+.alert-icon {
+  color: white !important;
 }

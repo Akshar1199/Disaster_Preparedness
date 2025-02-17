@@ -7,7 +7,8 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { ResourceShelterListComponent } from './components/resource-shelter-list/resource-shelter-list.component';
 import { CommunityChatComponent } from './components/community-chat/community-chat.component';
 import { AddGuidelinesComponent } from './components/add-guidelines/add-guidelines.component';
-import { AlertComponent } from './components/alert/alert.component';
+import { RequestComponent } from './components/request/request.component';
+import { AlertsComponent } from './components/alerts/alerts.component';
 
 export const routes: Routes = [
   {
@@ -45,7 +46,15 @@ export const routes: Routes = [
     component: AddGuidelinesComponent
   },
   {
-    path : 'alerts',
-    component : AlertComponent
+    path: 'community',
+    component: CommunityChatComponent
+  },
+  {
+    path: 'request',
+    component: RequestComponent
+  },
+  {
+    path:'alerts',
+    component:AlertsComponent
   }
 ];
