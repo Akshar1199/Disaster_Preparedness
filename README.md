@@ -1,9 +1,35 @@
 # Community-Driven Disaster Preparedness System
 
-## Project Overview
+## 1. Project Objective
+The objective of this project is to develop a **Community-Driven Disaster Preparedness System** that enables communities to collaboratively prepare for natural disasters such as earthquakes, floods, and wildfires. The system allows users to contribute preparedness guides, track emergency resource availability, and coordinate response plans. This project will be built using **Rust** for the backend and **Angular** for the frontend.
+
+## 2. Project Scope
+The system will cater to multiple stakeholders:
+- **Community Members:** Can contribute preparedness checklists, share local emergency contacts, and access disaster response plans.
+- **Local Authorities:** Can verify, update, and distribute real-time alerts and emergency measures.
+- **Volunteers & NGOs:** Can track relief resource availability and coordinate distribution efforts.
+
+## 3. Project Overview
 The **Community-Driven Disaster Preparedness System** is designed to help communities prepare for and respond to natural disasters such as earthquakes, floods, and wildfires. The system enables users to share preparedness guides, track emergency resources, and coordinate response plans collaboratively.
 
-## Technologies Used
+## 4. Software Requirements Specification (SRS)
+### 4.1 Functional Requirements
+- **User Authentication** (Sign Up, Login, Logout)
+- **Disaster Preparedness Guides** (Create, Edit, Delete, View)
+- **Real-time Emergency Alerts & Notifications** using WebSockets
+- **Resource & Shelter Tracking**
+- **Community Collaboration & Response Planning**
+- **Role-Based Access Control**
+- **Responsive UI with Angular Material**
+- **State Management using NgRx**
+
+### 4.2 Non-Functional Requirements
+- **Scalability:** The system should handle real-time updates for multiple locations.
+- **Security:** Secure user data and role-based access with JWT authentication.
+- **Performance:** Optimize API calls and implement lazy loading for fast UI interactions.
+- **Reliability:** Ensure fault tolerance in database and API handling.
+
+## 5. Technologies Used
 
 ### Frontend (Angular 19):
 - **Angular Material** - UI Components
@@ -14,7 +40,7 @@ The **Community-Driven Disaster Preparedness System** is designed to help commun
 
 ---
 
-## Features & Workflows
+## 6. Features & Workflows
 ### 1. User Authentication
 - Sign Up, Login, Logout
 - Role-based access control
