@@ -10,7 +10,9 @@ export class AlertService {
     { city: 'Ahmedabad', category:"Heavy Rainfall", message: 'Heavy Rainfall Expected Tomorrow' },
     { city: 'Ahmedabad', category:"EarthQuake", message: 'EarthQuake alert' },
     { city: 'Mumbai', category:"Cyclone", message: 'Cyclone Alert in Coastal Areas' },
-    { city: 'Delhi', category:"High Pollution", message: 'High Pollution Levels Detected' }
+    { city: 'Delhi', category:"High Pollution", message: 'High Pollution Levels Detected' },
+    { city: 'Surat', category:"Flood", message: 'Flood possibility is high in surat' },
+    { city: 'Surat', category:"Tornado", message: 'Tornado possibility' }
   ];
 
   subject = new Subject<number>()

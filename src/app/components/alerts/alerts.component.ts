@@ -40,6 +40,7 @@ export class AlertsComponent {
     this.locationService
       .getCurrentLocation()
       .then((location) => {
+        console.log("city",location.city);
         this.alerts = this.alertService.getAlertsForCity(location.city);
         // console.log(this.alerts);
         this.locationCity = location.city;
@@ -59,8 +60,10 @@ export class AlertsComponent {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(ResourceShelterAlertComponent, {
-      width: '750px',
-      height: '500px',
+      maxWidth: '90vw',
+      maxHeight: '90vh',
+      width: '50vw',
+      height: 'auto',
       data: { location: this.locationCity },
     });
 

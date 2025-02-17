@@ -30,6 +30,7 @@ export class LocationService {
           const lat = position.coords.latitude;
           const lon = position.coords.longitude;
           const city = await this.getCityFromCoordinates(lat, lon);
+
           resolve({ city });
         }, (error) => {
           reject(error);

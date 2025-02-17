@@ -44,8 +44,8 @@ The **Community-Driven Disaster Preparedness System** is designed to help commun
 ## Roles and Responsibility
 
 - Authentication Module -> **Dhrupal Mavani, Dhruvi Shah**
-- Dashboard Module including SideBar and Navbar -> **Dhrupal Mavani, Dhruvi Shah**
 - Alert Module -> **Akshar Parekh, Khushi Shah**
+- Dashboard Module including SideBar and Navbar -> **Dhrupal Mavani, Dhruvi Shah**
 - GuideLine module add, edit with Requests -> **Akshar Parekh, Harsh Godkar**
 - Resource/Shelter Tracking with filtering feature -> **Khushi Shah, Rucha Jogsan**
 - Community Chat -> **Harsh Godkar, Rucha Jogsan**

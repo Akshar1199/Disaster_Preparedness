@@ -79,6 +79,28 @@
         }
       },
       {
+        "id": "Akshar",
+        "name": "efeqf",
+        "quantity": 1,
+        "location": {
+          "street": "Central, MG Road",
+          "district": "Surat",
+          "state": "Gujarat",
+          "country": "India"
+        }
+      },
+      {
+        "id": "Ak",
+        "name": "dqdq",
+        "quantity": 1,
+        "location": {
+          "street": "Hilltop, Sector 10",
+          "district": "Surat",
+          "state": "Gujarat",
+          "country": "India"
+        }
+      },
+      {
         "id": "9ddc",
         "name": "Khushi Shah",
         "quantity": 1,
@@ -146,6 +168,30 @@
           "street": "East Side, Sector 9, Vikas Nagar",
           "district": "Lucknow",
           "state": "Uttar Pradesh",
+          "country": "India"
+        },
+        "capacity": 120,
+        "availableBeds": 35
+      },
+      {
+        "id": "Akshar",
+        "name": "Ak Relief Center",
+        "location": {
+          "street": "Adajan, Vikas Nagar",
+          "district": "Surat",
+          "state": "Gujarat",
+          "country": "India"
+        },
+        "capacity": 120,
+        "availableBeds": 35
+      },
+      {
+        "id": "Parekh",
+        "name": "Vasishtha NGO",
+        "location": {
+          "street": "Amroli, Cross Road",
+          "district": "Surat",
+          "state": "Gujarat",
           "country": "India"
         },
         "capacity": 120,
