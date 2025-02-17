@@ -12,6 +12,7 @@ export class AlertService {
     { city: 'Mumbai', category:"Cyclone", message: 'Cyclone Alert in Coastal Areas' },
     { city: 'Delhi', category:"High Pollution", message: 'High Pollution Levels Detected' }
   ];
+
   subject = new Subject<number>()
   length:number=0
   filteredAlerts:any[]=[];

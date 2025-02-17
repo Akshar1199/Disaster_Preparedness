@@ -66,6 +66,7 @@ export class GuidelinesComponent {
       this.convertToEmbedUrl();
     });
   }
+  }
 
   // this.store.select(selectDisasterByCategory(this.disasterName))
   //   .subscribe(selectedDisaster => {

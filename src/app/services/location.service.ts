@@ -44,7 +44,7 @@ export class LocationService {
 
     try {
       const data: any = await firstValueFrom(this.http.get(url));
-      // console.log('Full Response:', data);
+      console.log('Full Response:', data);
 
       const address = {
         // street: data.address?.road || data.address?.suburb || '',
@@ -52,7 +52,7 @@ export class LocationService {
         state: data.address?.state || '',
         // country: data.address?.country || ''
       };
-      // console.log('Fetched Address:', address);
+      console.log('Fetched Address:', address);
 
       return address.district || address.state;
     } catch (error) {

@@ -12,7 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
   selector: 'app-login',
   imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, MatIconModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 
 export class LoginComponent {
@@ -26,6 +26,7 @@ export class LoginComponent {
   clickEvent(event: MouseEvent) {
     this.hide.set(!this.hide());
     event.stopPropagation();
+    event.preventDefault();
   }
 
   constructor(private router: Router) {

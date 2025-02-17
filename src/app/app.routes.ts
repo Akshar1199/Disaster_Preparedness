@@ -40,6 +40,11 @@ export const routes: Routes = [
     data: { hideSearch: true }
   },
   {
+    path: 'community',
+    component: CommunityChatComponent
+  },
+
+  {
     path: 'add-guidelines',
     component: AddGuidelinesComponent
   },
