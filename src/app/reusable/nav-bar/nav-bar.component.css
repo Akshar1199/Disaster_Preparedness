@@ -15,3 +15,7 @@
   width: 30vw;
   color: red;
 }
+
+.alert-icon {
+  color: white !important;
+}
