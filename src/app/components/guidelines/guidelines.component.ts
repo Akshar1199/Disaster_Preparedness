@@ -12,10 +12,18 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { GuidelineDialogComponent } from '../../reusable/guideline-dialog/guideline-dialog.component';
 
-
 @Component({
   selector: 'app-guidelines',
-  imports: [CommonModule, MatDialogModule, MatCardModule, MatListModule, MatButtonModule, MatToolbarModule, MatIconModule, MatDividerModule],
+  imports: [
+    CommonModule,
+    MatDialogModule,
+    MatCardModule,
+    MatListModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatDividerModule,
+  ],
   templateUrl: './guidelines.component.html',
   styleUrl: './guidelines.component.css',
 })
@@ -56,7 +64,7 @@ export class GuidelinesComponent {
 
   convertToEmbedUrl() {
     const videoId = this.extractVideoId(this.videoUrl);
-    console.log("videoId",videoId);
+    console.log('videoId', videoId);
     if (videoId) {
       const embedUrl = `https://www.youtube.com/embed/${videoId}`;
       this.embedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
@@ -76,15 +84,33 @@ export class GuidelinesComponent {
     const dialogRef = this.dialog.open(GuidelineDialogComponent, {
       width: '300px',
       height: '200px',
-      data: { suggestions: '' }
+      data: { suggestions: '' },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         if (type === 'do') {
           this.disasters.guidelines.do.push(result);
         } else {
           this.disasters.guidelines.dont.push(result);
+        }
+      }
+    });
+  }
+
+  editDialog(type: string, item: string, index: number): void {
+    const dialogRef = this.dialog.open(GuidelineDialogComponent, {
+      width: '300px',
+      height: '200px',
+      data: { suggestions: item },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        if (type === 'do') {
+          this.disasters.guidelines.do[index] = result;
+        } else {
+          this.disasters.guidelines.dont[index] = result;
         }
       }
     });
