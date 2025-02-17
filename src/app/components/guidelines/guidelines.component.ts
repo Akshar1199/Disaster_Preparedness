@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DisasterService } from '../../services/disaster.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -31,7 +31,7 @@ import { RequestService } from '../../services/request.service';
   styleUrl: './guidelines.component.css',
 })
 export class GuidelinesComponent {
-  @Input() disaster_category!: string;
+  disaster_category!: string;
   disasters: any;
   videoUrl: string = '';
   embedUrl: SafeResourceUrl | null = null;
@@ -47,8 +47,7 @@ export class GuidelinesComponent {
   ) {}
 
   ngOnInit(): void {
-
-    // this.disaster_category = this.route.snapshot.params['disasterName'];
+    this.disaster_category = this.route.snapshot.params['disasterName'];
     console.log(this.disaster_category);
 
     this.disasterServ.getData().subscribe((res) => {
@@ -63,20 +62,20 @@ export class GuidelinesComponent {
       console.log('Video URL:', this.videoUrl);
       this.convertToEmbedUrl();
     });
-
-    // this.store.select(selectDisasterByCategory(this.disaster_category))
-    //   .subscribe(selectedDisaster => {
-    //     if (selectedDisaster) {
-    //       console.log("ngon",selectedDisaster)
-    //       this.disasters = selectedDisaster;
-    //       this.videoUrl = selectedDisaster.linkUrl;
-    //       console.log('Video URL:', this.videoUrl);
-    //       this.convertToEmbedUrl();
-    //     } else {
-    //       console.error('No disaster found for the selected category.');
-    //     }
-    //   });
   }
+
+  // this.store.select(selectDisasterByCategory(this.disaster_category))
+  //   .subscribe(selectedDisaster => {
+  //     if (selectedDisaster) {
+  //       console.log("ngon",selectedDisaster)
+  //       this.disasters = selectedDisaster;
+  //       this.videoUrl = selectedDisaster.linkUrl;
+  //       console.log('Video URL:', this.videoUrl);
+  //       this.convertToEmbedUrl();
+  //     } else {
+  //       console.error('No disaster found for the selected category.');
+  //     }
+  //   });
 
   convertToEmbedUrl() {
     const videoId = this.extractVideoId(this.videoUrl);
@@ -106,7 +105,6 @@ export class GuidelinesComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         if (type === 'do') {
-
           // this.disasters.guidelines.do.push(result);
         } else {
           // this.disasters.guidelines.dont.push(result);
