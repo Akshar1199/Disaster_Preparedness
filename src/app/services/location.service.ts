@@ -5,6 +5,7 @@ import { firstValueFrom } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class LocationService {
   private userLocation: { latitude: number; longitude: number } | null = null;
   private address: any = null;
@@ -40,14 +41,14 @@ export class LocationService {
   }
   private async getCityFromCoordinates(lat: number, lon: number): Promise<string> {
     const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`;
-    
+
     try {
       const data: any = await firstValueFrom(this.http.get(url));
-      // console.log('Full Response:', data); 
+      // console.log('Full Response:', data);
 
       const address = {
         // street: data.address?.road || data.address?.suburb || '',
-        district: data.address?.state_district || '',  
+        district: data.address?.state_district || '',
         state: data.address?.state || '',
         // country: data.address?.country || ''
       };

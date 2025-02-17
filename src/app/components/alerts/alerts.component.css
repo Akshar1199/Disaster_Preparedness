@@ -5,7 +5,7 @@
     align-items: center; /* Vertically center the spinner */
     height: 100%; /* Take up the full height of the parent container */
   }
-  
+
 .alert-container {
     display: flex;
     flex-direction: column;
@@ -14,7 +14,7 @@
     max-width: 600px;
     margin: auto;
   }
-  
+
   /* Loader container */
   .loading-container {
     display: flex;
@@ -29,13 +29,13 @@
     width: 100%; /* Full width to fill container */
     height: 100vh; /* Full viewport height for vertical centering */
   }
-  
+
   .loading-text {
     font-size: 16px;
     color: #555;
     margin-top: 10px;
   }
-  
+
   /* Error card styling */
   .error-card {
     width: 100%;
@@ -44,17 +44,17 @@
     border-left: 5px solid #f44336;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
-  
+
   .error-icon {
     font-size: 30px;
   }
-  
+
   .error-text {
     color: #f44336;
     font-size: 16px;
     font-weight: 500;
   }
-  
+
   /* Alerts card styling */
   .alert-card {
     width: 100%;
@@ -63,32 +63,37 @@
     border-left: 5px solid #ff9800;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
-  
+
   .alert-icon {
     font-size: 30px;
   }
-  
+
   .alert-title {
     font-size: 18px;
     font-weight: bold;
   }
-  
+
+
+
   /* List styling for alerts */
   .alert-item {
     display: flex;
     align-items: center;
-    padding: 10px 0;
+    padding: 10%;
+
   }
-  
+
   .alert-warning-icon {
     margin-right: 10px;
   }
-  
+
   .alert-message {
     font-size: 16px;
     color: #333;
   }
-  
+
+
+
   /* No alerts card */
   .no-alerts-card {
     width: 100%;
@@ -97,17 +102,17 @@
     border-left: 5px solid #4caf50;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
-  
+
   .check-icon {
     font-size: 30px;
   }
-  
+
   .no-alerts-text {
     font-size: 16px;
     font-weight: 500;
     color: #4caf50;
   }
-  
+
   /* Animation for fade-in effect */
   @keyframes fadeIn {
     from {
@@ -117,4 +122,3 @@
       opacity: 1;
     }
   }
-  

@@ -26,15 +26,18 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    data: { hideSearch: true }
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
+    data: { hideSearch: true }
   },
   {
     path: 'resource-shelter',
-    component: ResourceShelterListComponent
+    component: ResourceShelterListComponent,
+    data: { hideSearch: true }
   },
   {
     path: 'add-guidelines',
@@ -42,7 +45,8 @@ export const routes: Routes = [
   },
   {
     path: 'community',
-    component: CommunityChatComponent
+    component: CommunityChatComponent,
+    data: { hideSearch: true }
   },
   {
     path: 'request',

@@ -10,7 +10,7 @@
 
   <span class="flex-spacer"></span>
 
-  <mat-form-field class="search-form-field">
+  <mat-form-field class="search-form-field" *ngIf="showSearch">
     <mat-label>Search Disasters</mat-label>
     <mat-icon matPrefix>search</mat-icon>
     <input matInput [(ngModel)]="searchQuery" (input)="onSearch()" />
@@ -18,7 +18,7 @@
 
   <span class="flex-spacer"></span>
 
-  <!-- Alerts aligned to the right -->
+
   <div class="alerts-section">
     <a mat-list-item routerLink="/alerts" class="nav-item">
       <mat-icon [matBadge]="length" matBadgeColor="warn" class="alert-icon">notifications</mat-icon>

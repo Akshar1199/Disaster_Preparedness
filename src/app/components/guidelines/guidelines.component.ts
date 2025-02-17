@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DisasterService } from '../../services/disaster.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -32,10 +32,11 @@ import { RequestService } from '../../services/request.service';
 })
 export class GuidelinesComponent {
 
-  disaster_category!: string;
+  disasterName!: string;
   disasters: any;
   videoUrl: string = '';
   embedUrl: SafeResourceUrl | null = null;
+  alert: string | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -48,39 +49,40 @@ export class GuidelinesComponent {
   ) {}
 
   ngOnInit(): void {
-    this.disaster_category = this.route.snapshot.params['disasterName'];
-    console.log(this.disaster_category);
+
+    this.disasterName = this.route.snapshot.params['disasterName'];
 
     this.disasterServ.getData().subscribe((res) => {
       const disasters = Array.isArray(res[0].disasters)
         ? res[0].disasters
         : Object.values(res[0].disasters);
+        // console.log(res[0].disasters)
       this.disasters = disasters.find(
         (disaster: { category: string }) =>
-          disaster.category === this.disaster_category
+          disaster.category.toLowerCase() === this.disasterName.toLowerCase()
       );
+
       this.videoUrl = this.disasters.linkUrl;
-      console.log('Video URL:', this.videoUrl);
       this.convertToEmbedUrl();
     });
-
-    // this.store.select(selectDisasterByCategory(this.disaster_category))
-    //   .subscribe(selectedDisaster => {
-    //     if (selectedDisaster) {
-    //       console.log("ngon",selectedDisaster)
-    //       this.disasters = selectedDisaster;
-    //       this.videoUrl = selectedDisaster.linkUrl;
-    //       console.log('Video URL:', this.videoUrl);
-    //       this.convertToEmbedUrl();
-    //     } else {
-    //       console.error('No disaster found for the selected category.');
-    //     }
-    //   });
   }
+
+  // this.store.select(selectDisasterByCategory(this.disasterName))
+  //   .subscribe(selectedDisaster => {
+  //     if (selectedDisaster) {
+  //       console.log("ngon",selectedDisaster)
+  //       this.disasters = selectedDisaster;
+  //       this.videoUrl = selectedDisaster.linkUrl;
+  //       console.log('Video URL:', this.videoUrl);
+  //       this.convertToEmbedUrl();
+  //     } else {
+  //       console.error('No disaster found for the selected category.');
+  //     }
+  //   });
 
   convertToEmbedUrl() {
     const videoId = this.extractVideoId(this.videoUrl);
-    console.log('videoId', videoId);
+    // console.log('videoId', videoId);
     if (videoId) {
       const embedUrl = `https://www.youtube.com/embed/${videoId}`;
       this.embedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
@@ -106,7 +108,6 @@ export class GuidelinesComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         if (type === 'do') {
-
           // this.disasters.guidelines.do.push(result);
         } else {
           // this.disasters.guidelines.dont.push(result);

@@ -1,8 +1,9 @@
 import { Component, HostListener, ViewChild } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { SidebarComponent } from "./reusable/sidebar/sidebar.component";
 import { NavBarComponent } from "./reusable/nav-bar/nav-bar.component";
 import { CommonModule } from '@angular/common';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ export class AppComponent {
   onResize() {
     this.checkScreenSize();
   }
+
 
   checkScreenSize() {
     if (window.innerWidth <= 1000) {

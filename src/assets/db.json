@@ -13,13 +13,24 @@
         "id": "4"
       },
       {
+        "name": "Blankets",
+        "quantity": 23,
+        "location": {
+          "street": "East Side, Sector 5, Vastrapur",
+          "district": "Ahmedabad",
+          "state": "Gujarat",
+          "country": "India"
+        },
+        "id": "4"
+      },
+      {
         "id": "1218",
         "name": "Water",
         "quantity": 1,
         "location": {
-          "street": "North End, Sector 15, Dwarka",
-          "district": "New Delhi",
-          "state": "Delhi",
+          "street": "North End, Sector 15, Bodakdev",
+          "district": "Ahmedabad",
+          "state": "Gujarat",
           "country": "India"
         }
       },
@@ -93,12 +104,36 @@
         "id": "2"
       },
       {
+        "name": "Hope Shelter",
+        "location": {
+          "street": "West Side, Sector 5, Bodakdev",
+          "district": "Ahmedabad",
+          "state": "Gujarat",
+          "country": "India"
+        },
+        "capacity": 80,
+        "availableBeds": 10,
+        "id": "2"
+      },
+      {
         "id": "3",
         "name": "Caring Hands Shelter",
         "location": {
           "street": "North End, Sector 15, Dwarka",
           "district": "New Delhi",
           "state": "Delhi",
+          "country": "India"
+        },
+        "capacity": 50,
+        "availableBeds": 5
+      },
+      {
+        "id": "3",
+        "name": "Caring Hands Shelter",
+        "location": {
+          "street": "North End, Sector 15, Sindhubhavan",
+          "district": "Ahmedabad",
+          "state": "Gujarat",
           "country": "India"
         },
         "capacity": 50,

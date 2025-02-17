@@ -5,11 +5,12 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class AlertService {
+
   private alerts = [
-    { city: 'Ahmedabad', message: 'Heavy Rainfall Expected Tomorrow' },
-    { city: 'Ahmedabad', message: 'EarthQuake alert' },
-    { city: 'Mumbai', message: 'Cyclone Alert in Coastal Areas' },
-    { city: 'Delhi', message: 'High Pollution Levels Detected' }
+    { city: 'Ahmedabad', category:"Heavy Rainfall", message: 'Heavy Rainfall Expected Tomorrow' },
+    { city: 'Ahmedabad', category:"EarthQuake", message: 'EarthQuake alert' },
+    { city: 'Mumbai', category:"Cyclone", message: 'Cyclone Alert in Coastal Areas' },
+    { city: 'Delhi', category:"High Pollution", message: 'High Pollution Levels Detected' }
   ];
   subject = new Subject<number>()
   length:number=0
@@ -19,12 +20,12 @@ export class AlertService {
   }
 
   getAlertsForCity(city: string) {
-    this. filteredAlerts= this.alerts.filter(alert => alert.city === city)
+    this. filteredAlerts = this.alerts.filter(alert => alert.city === city)
     return this.filteredAlerts;
   }
+
   getLength(){
     this.length= this.filteredAlerts.length;
-    this.subject.next(this.length)
-    console.log("Service ",this.length)
+    this.subject.next(this.length);
   }
 }

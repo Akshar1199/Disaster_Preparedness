@@ -6,33 +6,64 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ResourceShelterAlertComponent } from '../../reusable/resource-shelter-alert/resource-shelter-alert.component';
+import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-alerts',
   templateUrl: './alerts.component.html',
   styleUrls: ['./alerts.component.css'],
-  imports:[CommonModule, MatCardModule,
+  imports: [
+    CommonModule,
+    MatCardModule,
     MatProgressSpinnerModule,
     MatIconModule,
-    MatListModule]
+    MatListModule,
+    MatButtonModule
+  ],
 })
-export class AlertsComponent implements OnInit {
-  alerts: { city: string, message: string }[] = [];
+export class AlertsComponent {
+  alerts: { city: string; category: string; message: string }[] = [];
   loading = true;
+  locationCity!: string;
   errorMessage = '';
 
-  constructor(private locationService: LocationService, private alertService: AlertService) {}
+  constructor(
+    private locationService: LocationService,
+    private dialog: MatDialog,
+    private router: Router,
+    private alertService: AlertService
+  ) {}
 
-  
   ngOnInit() {
-    this.locationService.getCurrentLocation()
-      .then(location => {
+    this.locationService
+      .getCurrentLocation()
+      .then((location) => {
         this.alerts = this.alertService.getAlertsForCity(location.city);
-        this.alertService.getLength()
+        // console.log(this.alerts);
+        this.locationCity = location.city;
+        console.log("Location city",this.locationCity);
+        this.alertService.getLength();
         this.loading = false;
       })
-      .catch(error => {
+      .catch((error) => {
         this.errorMessage = 'Unable to fetch location';
         this.loading = false;
       });
+  }
+
+  onAlertClick(disasterName: string) {
+    this.router.navigate(['disaster/', disasterName]);
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ResourceShelterAlertComponent, {
+      width: '750px',
+      height: '500px',
+      data: { location: this.locationCity },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {});
   }
 }

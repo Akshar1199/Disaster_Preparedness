@@ -73,8 +73,8 @@ export class DashboardComponent {
 
   // }
 
-  selectedDisaster(disaster: string) {
-    this.router.navigate(['disaster/', disaster]);
+  selectedDisaster(disasterName: string) {
+    this.router.navigate(['disaster/', disasterName]);
   }
 
   navigateToLogin() {
