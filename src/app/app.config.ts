@@ -8,12 +8,13 @@ import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { disasterReducer } from './store/reducers/disaster.reducer';
 import { provideEffects } from '@ngrx/effects';
+import { AppState } from './store/reducers/app.state';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(), provideAnimationsAsync(), provideAnimationsAsync(),
     provideAnimations(),
-    provideStore({ disasters: disasterReducer }),
+    provideStore<AppState>({ disasters: disasterReducer }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })]
 };
