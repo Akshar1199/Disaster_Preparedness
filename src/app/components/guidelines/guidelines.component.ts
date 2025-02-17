@@ -11,6 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { GuidelineDialogComponent } from '../../reusable/guideline-dialog/guideline-dialog.component';
+import { Store } from '@ngrx/store';
+import { selectDisasterByCategory } from '../../store/selectors/disaster.selector';
 
 @Component({
   selector: 'app-guidelines',
@@ -38,29 +40,29 @@ export class GuidelinesComponent {
     private route: ActivatedRoute,
     private router: Router,
     private sanitizer: DomSanitizer,
-    private disasterServ: DisasterService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private store: Store<{disasters:any[]}>
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+
     this.disaster_category = this.route.snapshot.params['disasterName'];
+    console.log(this.disaster_category);
 
-    this.disasterServ.getData().subscribe((res) => {
-      const selectedCategory = res[0].disasters.find(
-        (cat: { category: string }) => cat.category === this.disaster_category
-      );
-
-      if (selectedCategory) {
-        this.disasters = selectedCategory;
-        this.videoUrl = selectedCategory.linkUrl;
-        console.log(this.videoUrl);
-        console.log(selectedCategory.linkUrl);
-        this.convertToEmbedUrl();
-      } else {
-        console.error('No questions found for the selected category.');
-      }
-    });
+    this.store.select(selectDisasterByCategory(this.disaster_category))
+      .subscribe(selectedDisaster => {
+        if (selectedDisaster) {
+          console.log("ngon",selectedDisaster)
+          this.disasters = selectedDisaster;
+          this.videoUrl = selectedDisaster.linkUrl;
+          console.log('Video URL:', this.videoUrl);
+          this.convertToEmbedUrl();
+        } else {
+          console.error('No disaster found for the selected category.');
+        }
+      });
   }
+
 
   convertToEmbedUrl() {
     const videoId = this.extractVideoId(this.videoUrl);
