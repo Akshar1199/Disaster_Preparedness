@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormControl,
@@ -37,11 +37,14 @@ export class RegisterComponent {
   hide1 = signal(true);
   clickEvent1(event: MouseEvent) {
     this.hide1.set(!this.hide1());
+    event.preventDefault()
     event.stopPropagation();
   }
+
   hide2 = signal(true);
   clickEvent2(event: MouseEvent) {
     this.hide2.set(!this.hide2());
+    event.preventDefault()
     event.stopPropagation();
   }
 

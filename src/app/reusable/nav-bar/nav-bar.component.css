@@ -1,16 +1,17 @@
-.search-bar{
+.navbar {
   display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.search-bar-input{
-  width: 30vw;
-  border-radius: 1rem;
-  border: 1px solid #ccc;
-  font-size: 1.25rem;
-  padding: 5px;
+  /* align-items: center; */
 }
 
-.search-bar-input::placeholder{
-  font-size: 15px;
+.menu-button {
+  margin-right: 8px;
+}
+
+.flex-spacer {
+  flex: 1;
+}
+
+.search-form-field {
+  width: 30vw;
+  color: red;
 }

@@ -4,23 +4,24 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { GuidelinesComponent } from './components/guidelines/guidelines.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
-import { SidebarComponent } from './reusable/sidebar/sidebar.component';
 import { ResourceShelterListComponent } from './components/resource-shelter-list/resource-shelter-list.component';
 import { CommunityChatComponent } from './components/community-chat/community-chat.component';
+import { AddGuidelinesComponent } from './components/add-guidelines/add-guidelines.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 export const routes: Routes = [
   {
     path: '',
     redirectTo: 'dashboard',
-    pathMatch: 'full',
+    pathMatch: 'full'
   },
   {
     path: 'dashboard',
-    component: DashboardComponent,
+    component: DashboardComponent
   },
   {
     path: 'disaster/:disasterName',
-    component: GuidelinesComponent,
+    component: GuidelinesComponent
   },
   {
     path: 'login',
@@ -33,8 +34,18 @@ export const routes: Routes = [
   {
     path: 'resource-shelter',
     component: ResourceShelterListComponent
-  },{
+  },
+  {
     path: 'community',
     component: CommunityChatComponent
+  },
+
+  {
+    path: 'add-guidelines',
+    component: AddGuidelinesComponent
+  },
+  {
+    path : 'alerts',
+    component : AlertComponent
   }
 ];

@@ -1,33 +1,9 @@
-/* Sidebar */
-.sidebar {
-  background:  #242124;
-  color: white;
-  height: 100vh;
-  padding: 20px;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar ul li {
-  padding: 10px;
-  cursor: pointer;
-  font-size: 18px;
-}
-
-.sidebar ul li:hover {
-  background: gray;
-  border-radius: 10px;
-}
-
-/* Chat Area */
 .chat-area {
   padding: 20px;
   overflow-y: auto;
   height: 100vh;
-  scrollbar-width: 0;
+
+  /* scrollbar-width: 0; */
 }
 
 .chat-area::-webkit-scrollbar {
@@ -39,6 +15,8 @@
   display: flex;
   flex-direction: column;
   scrollbar-width: 0;
+  /* margin-top: 10vh; */
+
 }
 
 .message {
@@ -55,7 +33,6 @@
   margin-right: 10px;
 }
 
-/* 🔥 Floating Post Box */
 .post-box-container {
   position: fixed;
   bottom: 80px;
@@ -82,7 +59,6 @@
   margin-top: 10px;
 }
 
-/* 🔥 Floating Button */
 .floating-btn {
   position: fixed;
   bottom: 20px;
@@ -107,4 +83,8 @@
 .router-link-active {
   background: gray;
   border-radius: 10px;
+}
+
+.class1 ::-webkit-scrollbar {
+  display: none;
 }

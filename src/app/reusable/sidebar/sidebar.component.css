@@ -1,6 +1,6 @@
 .sidenav-container {
   height: 100vh;
-  width: auto;
+  /* width: auto; */
 }
 
 .sidenav {
@@ -9,8 +9,8 @@
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  transition: width 0.3s ease;
+  /* justify-content: space-between; */
+  /* transition: width 0.3s ease; */
 }
 
 .sidebar-header {

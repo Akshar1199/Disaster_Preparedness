@@ -22,6 +22,10 @@
         <mat-icon fontIcon="home"></mat-icon>
         <span class="nav-text">Resource/Shelters</span>
       </a>
+      <a mat-list-item routerLink="/add-guidelines" class="nav-item">
+        <mat-icon fontIcon="Add"></mat-icon>
+        <span class="nav-text">Add Guidelines</span>
+      </a>
     </mat-nav-list>
 
     <div class="auth-buttons">
@@ -29,15 +33,12 @@
         <mat-icon>login</mat-icon>
         <span  class="nav-text">Login</span>
       </a>
-      <a mat-list-item routerLink="/register" class="nav-item auth-button">
-        <mat-icon>person_add</mat-icon>
-        <span  class="nav-text">Register</span>
+      <a mat-list-item class="nav-item auth-button">
+        <!-- <mat-icon>logout</mat-icon>
+        <span class="nav-text">Logout</span> -->
       </a>
     </div>
 
-    <button mat-button class="logout-button">
-      <mat-icon>logout</mat-icon>
-      <span class="nav-text">Logout</span>
-    </button>
+
   </mat-sidenav>
 </mat-sidenav-container>

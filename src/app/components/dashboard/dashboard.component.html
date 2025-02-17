@@ -1,21 +1,21 @@
 <div class="dashboard-container">
-  <app-sidebar
+  <!-- <app-sidebar
     [isOpen]="sidebarOpen"
     (closeSidebar)="onCloseSidebar()"
-  ></app-sidebar>
+  ></app-sidebar> -->
 
 
   <div class="dashboard-content">
 
 
-    <app-nav-bar (closeSidebar)="toggleSidebar()" (searchEvent)="onSearch($event)"></app-nav-bar>
+    <!-- <app-nav-bar (closeSidebar)="toggleSidebar()" (searchEvent)="onSearch($event)"></app-nav-bar> -->
 
     <div class="body-part">
       <div class="search">
 
         <div class="all-categories">
           <div
-            *ngFor="let item of filteredDisasters"
+            *ngFor="let item of filteredDisasters$ | async"
             class="category-card"
           >
             <mat-card
