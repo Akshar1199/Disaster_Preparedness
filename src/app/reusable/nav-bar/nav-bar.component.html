@@ -10,7 +10,7 @@
 
   <span class="flex-spacer"></span>
 
-  <mat-form-field class="search-form-field" *ngIf="showSearch">
+  <mat-form-field class="search-form-field" *ngIf="showSearch" style="margin-top:3px;">
     <mat-label>Search Disasters</mat-label>
     <mat-icon matPrefix>search</mat-icon>
     <input matInput [(ngModel)]="searchQuery" (input)="onSearch()" />

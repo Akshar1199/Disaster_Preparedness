@@ -22,13 +22,12 @@
             >
               <div class="list-item-content">
                 <span class="item-text">✅ {{ item }}</span>
-                <button
-                  mat-button
-                  class="edit-btn bg-warning text-light border-0 fs-6"
+                <mat-icon
+                  class="edit-btn text-dark fs-6"
                   (click)="editDialog('do', item, i)"
                 >
-                  Edit
-                </button>
+                  edit
+                </mat-icon>
               </div>
             </mat-list-item>
           </mat-list>
@@ -56,13 +55,12 @@
             >
               <div class="list-item-content">
                 <span class="item-text">❌ {{ item }}</span>
-                <button
-                  mat-button
-                  class="edit-btn bg-warning text-light border-0 fs-6"
+                <mat-icon
+                  class="edit-btn text-dark fs-6"
                   (click)="editDialog('dont', item, i)"
                 >
-                  Edit
-                </button>
+                edit
+                </mat-icon>
               </div>
             </mat-list-item>
           </mat-list>

@@ -22,7 +22,8 @@ export const routes: Routes = [
   },
   {
     path: 'disaster/:disasterName',
-    component: GuidelinesComponent
+    component: GuidelinesComponent,
+    data: { hideSearch: true }
   },
   {
     path: 'login',
@@ -41,17 +42,12 @@ export const routes: Routes = [
   },
   {
     path: 'community',
-    component: CommunityChatComponent
+    component: CommunityChatComponent,
+    data: { hideSearch: true }
   },
-
   {
     path: 'add-guidelines',
     component: AddGuidelinesComponent
-  },
-  {
-    path: 'community',
-    component: CommunityChatComponent,
-    data: { hideSearch: true }
   },
   {
     path: 'request',
