@@ -34,7 +34,3 @@ export class GuidelineDialogComponent {
   }
 
 }
-
-// export interface DialogData {
-//   suggestions : string
-// }

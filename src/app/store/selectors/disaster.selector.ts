@@ -1,17 +1,18 @@
-import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { DisasterState } from "../reducers/disaster.reducer";
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { DisasterState } from '../reducers/disaster.reducer';
 
-
-// export const selectDisasters = createFeatureSelector<any[]>('disasters');
+// Feature selector
 export const selectDisasterState = createFeatureSelector<DisasterState>('disasters');
 
+// Selector for all disasters
 export const selectDisasters = createSelector(
   selectDisasterState,
   (state: DisasterState) => state.disasters
 );
 
+// Selector for disaster by category
 export const selectDisasterByCategory = (category: string) =>
   createSelector(
     selectDisasters,
-    (disasters: any[]) => disasters.find(disaster => disaster.category === category)
+    (disasters) => disasters.find(disaster => disaster.category === category)
   );
