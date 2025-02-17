@@ -6,9 +6,10 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { disasterReducer } from './store/reducers/disaster.reducer';
+// import { DisasterEffects } from './store/effects/disaster.effect';
 import { provideEffects } from '@ngrx/effects';
 import { AppState } from './store/reducers/app.state';
+import { disasterReducer } from './store/reducers/disaster.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),
@@ -16,5 +17,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(), provideAnimationsAsync(), provideAnimationsAsync(),
     provideAnimations(),
     provideStore<AppState>({ disasters: disasterReducer }),
+    // provideEffects([DisasterEffects]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })]
 };

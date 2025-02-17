@@ -13,6 +13,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { GuidelineDialogComponent } from '../../reusable/guideline-dialog/guideline-dialog.component';
 import { Store } from '@ngrx/store';
 import { selectDisasterByCategory } from '../../store/selectors/disaster.selector';
+import { RequestService } from '../../services/request.service';
 
 @Component({
   selector: 'app-guidelines',
@@ -30,9 +31,9 @@ import { selectDisasterByCategory } from '../../store/selectors/disaster.selecto
   styleUrl: './guidelines.component.css',
 })
 export class GuidelinesComponent {
+
   disaster_category!: string;
   disasters: any;
-
   videoUrl: string = '';
   embedUrl: SafeResourceUrl | null = null;
 
@@ -41,28 +42,41 @@ export class GuidelinesComponent {
     private router: Router,
     private sanitizer: DomSanitizer,
     private dialog: MatDialog,
-    private store: Store<{disasters:any[]}>
+    private disasterServ: DisasterService,
+    private reqServ: RequestService,
+    private store: Store<{ disasters: any[] }>
   ) {}
 
   ngOnInit(): void {
-
     this.disaster_category = this.route.snapshot.params['disasterName'];
     console.log(this.disaster_category);
 
-    this.store.select(selectDisasterByCategory(this.disaster_category))
-      .subscribe(selectedDisaster => {
-        if (selectedDisaster) {
-          console.log("ngon",selectedDisaster)
-          this.disasters = selectedDisaster;
-          this.videoUrl = selectedDisaster.linkUrl;
-          console.log('Video URL:', this.videoUrl);
-          this.convertToEmbedUrl();
-        } else {
-          console.error('No disaster found for the selected category.');
-        }
-      });
-  }
+    this.disasterServ.getData().subscribe((res) => {
+      const disasters = Array.isArray(res[0].disasters)
+        ? res[0].disasters
+        : Object.values(res[0].disasters);
+      this.disasters = disasters.find(
+        (disaster: { category: string }) =>
+          disaster.category === this.disaster_category
+      );
+      this.videoUrl = this.disasters.linkUrl;
+      console.log('Video URL:', this.videoUrl);
+      this.convertToEmbedUrl();
+    });
 
+    // this.store.select(selectDisasterByCategory(this.disaster_category))
+    //   .subscribe(selectedDisaster => {
+    //     if (selectedDisaster) {
+    //       console.log("ngon",selectedDisaster)
+    //       this.disasters = selectedDisaster;
+    //       this.videoUrl = selectedDisaster.linkUrl;
+    //       console.log('Video URL:', this.videoUrl);
+    //       this.convertToEmbedUrl();
+    //     } else {
+    //       console.error('No disaster found for the selected category.');
+    //     }
+    //   });
+  }
 
   convertToEmbedUrl() {
     const videoId = this.extractVideoId(this.videoUrl);
@@ -92,10 +106,12 @@ export class GuidelinesComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         if (type === 'do') {
-          this.disasters.guidelines.do.push(result);
+
+          // this.disasters.guidelines.do.push(result);
         } else {
-          this.disasters.guidelines.dont.push(result);
+          // this.disasters.guidelines.dont.push(result);
         }
+        this.reqServ.addReq(result);
       }
     });
   }

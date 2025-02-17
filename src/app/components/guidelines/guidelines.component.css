@@ -1,23 +1,7 @@
-.list-item {
+.full-width {
+  width: 100%;
+}
+.button-group {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.text-container {
-  word-break: break-word;
-  white-space: normal;
-  /* flex: 1; */
-}
-
-.edit-button {
-  margin-left: 10px;
-}
-
-.guideline-item {
-  visibility: visible !important;
-  opacity: 1 !important;
-  display: block !important;
+  justify-content: center;
 }

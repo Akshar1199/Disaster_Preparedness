@@ -8,6 +8,7 @@ import { Message } from '../components/community-chat/community-chat.component';
 })
 
 export class WebSocketService {
+
   private socket$!: WebSocketSubject<Message>;
   private wsURL = 'ws://localhost:8080';
 
