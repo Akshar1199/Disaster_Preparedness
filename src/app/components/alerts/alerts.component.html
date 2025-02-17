@@ -1,0 +1,42 @@
+<div class="alert-container">
+  
+    <!-- Loader -->
+    <div *ngIf="loading" class="loading-container">
+      <mat-spinner [diameter]="50" color="accent" class="spinner"></mat-spinner>
+      <p class="loading-text">Fetching location and alerts...</p>
+    </div>
+    
+    <!-- Error Message -->
+    <mat-card *ngIf="errorMessage" class="error-card">
+      <mat-card-content>
+        <mat-icon color="warn" class="error-icon">error</mat-icon>
+        <p class="error-text">{{ errorMessage }}</p>
+      </mat-card-content>
+    </mat-card>
+    
+    <!-- Alerts List -->
+    <mat-card *ngIf="alerts.length > 0" class="alert-card">
+      <mat-card-header>
+        <mat-icon color="primary" class="alert-icon">notifications</mat-icon>
+        <mat-card-title class="alert-title">Live Alerts for Your Location</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item *ngFor="let alert of alerts" class="alert-item">
+            <mat-icon color="warn" class="alert-warning-icon">warning</mat-icon>
+            <span class="alert-message">{{ alert.message }}</span>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+    
+    <!-- No Alerts Message -->
+    <mat-card *ngIf="alerts.length === 0 && !loading" class="no-alerts-card">
+      <mat-card-content>
+        <mat-icon color="primary" class="check-icon">check_circle</mat-icon>
+        <p class="no-alerts-text">No alerts for your location.</p>
+      </mat-card-content>
+    </mat-card>
+    
+  </div>
+  

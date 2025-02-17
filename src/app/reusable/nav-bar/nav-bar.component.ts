@@ -9,6 +9,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { RouterLink } from '@angular/router';
+import {MatBadgeModule} from '@angular/material/badge';
+import { AlertService } from '../../services/alert.service';
+import { AlertsComponent } from '../../components/alerts/alerts.component';
 
 @Component({
   selector: 'app-nav-bar',
@@ -23,6 +27,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatInputModule,
     FormsModule,
     MatSidenavModule,
+    RouterLink,
+    MatBadgeModule
   ],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css',
@@ -32,6 +38,23 @@ export class NavBarComponent {
   @Input() isOpen = false;
   @Output() closeSidebar = new EventEmitter<void>();
   @Output() searchEvent = new EventEmitter<string>();
+  length !: number 
+  constructor(private alertService : AlertService){
+   
+  }
+  ngOnInit(){
+    this.alertService.subject.subscribe({
+      next : (data)=> {
+        console.log("NavBar", data)
+        this.length = data
+      },
+      error : (err) => {
+        console.error(err)
+      }
+    })
+  }
+
+
 
   searchQuery: string = '';
   sidebarOpen = true;
