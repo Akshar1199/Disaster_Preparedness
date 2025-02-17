@@ -20,15 +20,17 @@
               *ngFor="let item of disasters?.guidelines?.do; let i = index"
               class="list-item"
             >
-              ✅ {{ item }}
-              <button
-                mat-button
-                class="edit-btn bg-warning text-light border-0 fs-6"
-                (click)="editDialog('do', item, i)"
-              >
-                Edit
-              </button>
-            </mat-list-item >
+              <div class="list-item-content">
+                <span class="item-text">✅ {{ item }}</span>
+                <button
+                  mat-button
+                  class="edit-btn bg-warning text-light border-0 fs-6"
+                  (click)="editDialog('do', item, i)"
+                >
+                  Edit
+                </button>
+              </div>
+            </mat-list-item>
           </mat-list>
         </mat-card>
         <button
@@ -44,7 +46,7 @@
       <div class="col-md-6">
         <mat-card class="mat-elevation-z3">
           <mat-card-header
-            class="bg-danger text-light justify-content-center p-3 fw-bold fs-4"
+            class="bg-danger text-light justify-content-center list-item p-3 fw-bold fs-4"
             style="border-radius: 8px 8px 0 0"
             >Don't</mat-card-header
           >
@@ -52,14 +54,16 @@
             <mat-list-item
               *ngFor="let item of disasters?.guidelines?.dont; let i = index"
             >
-              ❌ {{ item }}
-              <button
-                mat-button
-                class="edit-btn bg-warning text-light border-0 fs-6"
-                (click)="editDialog('dont', item, i)"
-              >
-                Edit
-              </button>
+              <div class="list-item-content">
+                <span class="item-text">❌ {{ item }}</span>
+                <button
+                  mat-button
+                  class="edit-btn bg-warning text-light border-0 fs-6"
+                  (click)="editDialog('dont', item, i)"
+                >
+                  Edit
+                </button>
+              </div>
             </mat-list-item>
           </mat-list>
         </mat-card>
@@ -94,5 +98,3 @@
     </div>
   </mat-card>
 </div>
-
-
