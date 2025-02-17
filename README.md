@@ -45,25 +45,24 @@ The **Community-Driven Disaster Preparedness System** is designed to help commun
 
 - Authentication Module -> **Dhrupal Mavani, Dhruvi Shah**
 - Dashboard Module including SideBar and Navbar -> **Dhrupal Mavani, Dhruvi Shah**
-- GuideLine module with Requests -> **Akshar Parekh, Harsh Godkar**
+- Alert Module -> **Akshar Parekh, Khushi Shah**
+- GuideLine module add, edit with Requests -> **Akshar Parekh, Harsh Godkar**
 - Resource/Shelter Tracking with filtering feature -> **Khushi Shah, Rucha Jogsan**
 - Community Chat -> **Harsh Godkar, Rucha Jogsan**
-- Alert Module -> **Akshar Parekh, Khushi Shah**
 
 ## Installation & Setup
 ### Prerequisites:
-- Node.js & npm (for frontend)
+- Rust & npm (for frontend)
 
 ### Clone Repository:
 ```sh
-git clone https://github.com/your-repo/community-disaster-preparedness.git
-cd community-disaster-preparedness
+git clone https://github.com/Akshar1199/Disaster_Preparedness.git
+cd Disaster_preparedness
 ```
 
 
 ### Frontend Setup:
 ```sh
-cd frontend
 npm install
 ng serve
 ```

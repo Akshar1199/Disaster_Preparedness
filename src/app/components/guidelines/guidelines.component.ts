@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DisasterService } from '../../services/disaster.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -14,6 +14,7 @@ import { GuidelineDialogComponent } from '../../reusable/guideline-dialog/guidel
 import { Store } from '@ngrx/store';
 import { selectDisasterByCategory } from '../../store/selectors/disaster.selector';
 import { RequestService } from '../../services/request.service';
+
 
 @Component({
   selector: 'app-guidelines',
@@ -31,12 +32,11 @@ import { RequestService } from '../../services/request.service';
   styleUrl: './guidelines.component.css',
 })
 export class GuidelinesComponent {
-
-  disasterName!: string;
+  disaster_category!: string;
   disasters: any;
   videoUrl: string = '';
   embedUrl: SafeResourceUrl | null = null;
-  alert: string | undefined;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -48,27 +48,28 @@ export class GuidelinesComponent {
     private store: Store<{ disasters: any[] }>
   ) {}
 
-  ngOnInit(): void {
 
-    this.disasterName = this.route.snapshot.params['disasterName'];
+  ngOnInit(): void {
+    this.disaster_category = this.route.snapshot.params['disasterName'];
+    console.log(this.disaster_category);
+
 
     this.disasterServ.getData().subscribe((res) => {
       const disasters = Array.isArray(res[0].disasters)
         ? res[0].disasters
         : Object.values(res[0].disasters);
-        // console.log(res[0].disasters)
       this.disasters = disasters.find(
         (disaster: { category: string }) =>
-          disaster.category.toLowerCase() === this.disasterName.toLowerCase()
+          disaster.category === this.disaster_category
       );
-
       this.videoUrl = this.disasters.linkUrl;
+      console.log('Video URL:', this.videoUrl);
       this.convertToEmbedUrl();
     });
   }
-  }
 
-  // this.store.select(selectDisasterByCategory(this.disasterName))
+
+  // this.store.select(selectDisasterByCategory(this.disaster_category))
   //   .subscribe(selectedDisaster => {
   //     if (selectedDisaster) {
   //       console.log("ngon",selectedDisaster)
@@ -81,9 +82,10 @@ export class GuidelinesComponent {
   //     }
   //   });
 
+
   convertToEmbedUrl() {
     const videoId = this.extractVideoId(this.videoUrl);
-    // console.log('videoId', videoId);
+    console.log('videoId', videoId);
     if (videoId) {
       const embedUrl = `https://www.youtube.com/embed/${videoId}`;
       this.embedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
@@ -92,6 +94,7 @@ export class GuidelinesComponent {
     }
   }
 
+
   extractVideoId(url: string): string | null {
     const regExp =
       /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
@@ -99,12 +102,14 @@ export class GuidelinesComponent {
     return match && match[2].length === 11 ? match[2] : null;
   }
 
+
   openDialog(type: string): void {
     const dialogRef = this.dialog.open(GuidelineDialogComponent, {
       width: '300px',
       height: '200px',
       data: { suggestions: '' },
     });
+
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
@@ -118,12 +123,14 @@ export class GuidelinesComponent {
     });
   }
 
+
   editDialog(type: string, item: string, index: number): void {
     const dialogRef = this.dialog.open(GuidelineDialogComponent, {
       width: '300px',
       height: '200px',
       data: { suggestions: item },
     });
+
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
@@ -135,6 +142,7 @@ export class GuidelinesComponent {
       }
     });
   }
+
 
   goBack() {
     this.router.navigate(['/dashboard']);
