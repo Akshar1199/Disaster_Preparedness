@@ -7,10 +7,12 @@ import { Subject } from 'rxjs';
 export class AlertService {
   private alerts = [
     { city: 'Ahmedabad', message: 'Heavy Rainfall Expected Tomorrow' },
-    { city: 'Ahmedabad', message: 'EarthQuake alert' },
+    { city: 'Kansas', message: 'EarthQuake alert' },
     { city: 'Mumbai', message: 'Cyclone Alert in Coastal Areas' },
-    { city: 'Delhi', message: 'High Pollution Levels Detected' }
+    { city: 'Delhi', message: 'High Pollution Levels Detected' },
+    { city: 'Greater London',message:"Hello From London"}
   ];
+  
   subject = new Subject<number>()
   length:number=0
   filteredAlerts:any[]=[];
@@ -19,7 +21,7 @@ export class AlertService {
   }
 
   getAlertsForCity(city: string) {
-    this. filteredAlerts= this.alerts.filter(alert => alert.city === city)
+    this.filteredAlerts= this.alerts.filter(alert => alert.city === city)
     return this.filteredAlerts;
   }
   getLength(){
